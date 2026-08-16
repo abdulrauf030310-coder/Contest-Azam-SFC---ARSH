@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thrift Fashion · Curated Pre‑loved</title>
+    <meta name="description"
+        content="Curated pre‑loved fashion, sustainably sourced. Discover 500+ unique vintage & thrifted pieces." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- External libraries -->
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- ===== MAIN JAVASCRIPT ===== -->
+    <script defer src="js/app.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/logo.png" />
+
+<body>
+
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="loadingScreen" role="status" aria-label="Loading">
+        <div class="loader-hanger" aria-hidden="true">
+            <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 30 L20 55 L60 55 L60 30" stroke="#800020" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                <path d="M30 30 L30 45 M50 30 L50 45 M40 30 L40 50" stroke="#6B0D23" stroke-width="2"
+                    stroke-linecap="round" />
+                <path d="M40 10 L40 30" stroke="#800020" stroke-width="2.5" stroke-linecap="round" />
+                <circle cx="40" cy="10" r="4" fill="#800020" opacity="0.6">
+                    <animate attributeName="opacity" values="0.6;1;0.6" dur="1.2s" repeatCount="indefinite" />
+                    <animate attributeName="r" values="4;5;4" dur="1.2s" repeatCount="indefinite" />
+                </circle>
+                <circle cx="30" cy="20" r="2" fill="#6B0D23" opacity="0.3">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.8s" repeatCount="indefinite"
+                        begin="0.3s" />
+                </circle>
+                <circle cx="50" cy="20" r="2" fill="#6B0D23" opacity="0.3">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.8s" repeatCount="indefinite"
+                        begin="0.9s" />
+                </circle>
+            </svg>
+        </div>
+        <div class="loader-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            <div class="loader-bar-fill" id="loaderFill"></div>
+        </div>
+        <span class="loader-text">Curating sustainable fashion...</span>
+    </div>
+
+    <!-- ===== FIRST VISIT MODAL ===== -->
+    <div class="modal-overlay" id="firstVisitModal" role="dialog" aria-modal="true" aria-labelledby="firstVisitTitle">
+        <div class="modal-content">
+            <h2 id="firstVisitTitle">Welcome to Thrift Fashion</h2>
+            <p>Enter your name to begin your journey.</p>
+            <input type="text" id="firstNameInput" placeholder="Your first name" maxlength="30"
+                aria-label="Your first name" />
+            <button class="btn btn-primary" id="saveNameBtn" type="button">Enter Store</button>
+        </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header" id="siteHeader" role="banner">
+        <div class="header-container">
+            <a href="#home" class="logo" aria-label="Thrift Fashion Store Home">
+                <span class="logo-rive" id="logoRive" aria-hidden="true"></span>
+                <span class="logo-text">Thrift<span>Fashion</span></span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+
+            <nav class="main-nav" id="mainNav" aria-label="Main Navigation">
+                <ul>
+                    <li><a href="#home" class="nav-link active" data-view="home">Home</a></li>
+                    <li><a href="#shop" class="nav-link" data-view="shop">Shop</a></li>
+                    <li><a href="#about" class="nav-link" data-view="about">About</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-right">
+                <div class="visitor-counter" title="Visitors today" aria-label="Visitor count">
+                    <i class="fas fa-users" aria-hidden="true"></i>
+                    <span id="visitorCount">1,842</span>
+                </div>
+                <span class="user-greeting" id="userGreeting">Welcome, Guest</span>
+                <button class="cart-toggle" id="cartToggle" aria-label="Open shopping cart" aria-expanded="false">
+                    <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+                    <span class="cart-badge" id="cartBadge" aria-label="Cart items count">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MAIN SCREEN ===== -->
+    <main class="main-content" id="mainContent">
+
+        <!-- ===== HOME VIEW ===== -->
+        <section id="view-home" class="view active" aria-labelledby="homeHeading">
+
+            <!-- HERO -->
+            <div class="hero-section" id="heroSection">
+                <div class="swiper hero-slider" id="heroSwiper">
+                    <div class="swiper-wrapper" id="heroSliderWrapper"></div>
+                    <div class="swiper-button-next" aria-label="Next slide"></div>
+                    <div class="swiper-button-prev" aria-label="Previous slide"></div>
+                    <div class="swiper-pagination" id="heroPagination"></div>
+                </div>
+
+                <div class="hero-overlay">
+                    <div class="hero-brand-tag">Circular Fashion</div>
+                    <h1 class="hero-title-sutra" id="homeHeading">TIMELESS CRAFT,<br /><em>MODERN SOUL.</em></h1>
+                    <p class="hero-sub-sutra">Discover our new collection of heritage-inspired clothing, redefined for
+                        today.</p>
+                    <a href="#shop" class="hero-cta-sutra">
+                        <span>Explore Collection</span>
+                        <span class="arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="hero-categories" id="heroCategories" role="tablist"
+                    aria-label="Filter hero slides by category">
+                    <button role="tab" aria-selected="true" data-category="all" class="active">All</button>
+                    <button role="tab" aria-selected="false" data-category="Tops">Tops</button>
+                    <button role="tab" aria-selected="false" data-category="Outerwear">Outerwear</button>
+                    <button role="tab" aria-selected="false" data-category="Denim">Denim</button>
+                    <button role="tab" aria-selected="false" data-category="Vintage Dresses">Dresses</button>
+                    <button role="tab" aria-selected="false" data-category="Footwear">Footwear</button>
+                    <button role="tab" aria-selected="false" data-category="Accessories">Accessories</button>
+                </div>
+            </div>
+
+            <!-- PERSONALIZED BANNER -->
+            <div class="personalized-banner" id="personalizedBanner">
+                <p><i class="fas fa-leaf" aria-hidden="true"></i><span id="bannerGreeting">Welcome</span> &ndash; your
+                    first stop for timeless thrifted treasures.</p>
+            </div>
+
+            <!-- FEATURED -->
+            <section class="featured-section" aria-labelledby="featuredHeading">
+                <div class="section-header">
+                    <h2 id="featuredHeading">Featured Drops</h2>
+                    <span class="section-sub">Curated picks with character, quality &amp; value.</span>
+                </div>
+                <div class="featured-grid" id="featuredGrid"></div>
+                <div class="view-all-link">
+                    <a href="#shop" class="btn btn-outline">View All Products &rarr;</a>
+                </div>
+            </section>
+
+            <!-- IMPACT -->
+            <section class="impact-section" id="impactSection" aria-labelledby="impactHeading">
+                <h2 id="impactHeading">Our Eco-Impact</h2>
+                <div class="impact-stats">
+                    <div class="impact-card">
+                        <span class="impact-number" id="impactItems">12,450+</span>
+                        <span class="impact-label">Items Saved from Landfill</span>
+                        <div class="rive-gauge" id="riveGauge1" aria-hidden="true"></div>
+                    </div>
+                    <div class="impact-card">
+                        <span class="impact-number" id="impactWater">8.2M</span>
+                        <span class="impact-label">Gallons of Water Conserved</span>
+                        <div class="rive-gauge" id="riveGauge2" aria-hidden="true"></div>
+                    </div>
+                    <div class="impact-card">
+                        <span class="impact-number" id="impactCO2">3,780 kg</span>
+                        <span class="impact-label">CO<sub>2</sub> Emissions Prevented</span>
+                        <div class="rive-gauge" id="riveGauge3" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- ===== SHOP VIEW ===== -->
+        <section id="view-shop" class="view" aria-labelledby="shopHeading">
+            <div class="shop-header">
+                <h1 id="shopHeading">Shop All Treasures</h1>
+                <p>Browse our entire collection of <span id="totalProductsCount">500+</span> unique, pre-loved pieces.
+                </p>
+            </div>
+
+            <div class="shop-controls">
+                <div class="search-wrapper">
+                    <input type="search" id="searchInput" placeholder="Search by style, era, garment..."
+                        aria-label="Search products" />
+                    <span class="search-icon" aria-hidden="true"><i class="fas fa-search"></i></span>
+                </div>
+
+                <div class="filter-group">
+                    <label for="categoryFilter">Category</label>
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="Tops">Tops</option>
+                        <option value="Outerwear">Outerwear</option>
+                        <option value="Denim">Denim</option>
+                        <option value="Vintage Dresses">Vintage Dresses</option>
+                        <option value="Footwear">Footwear</option>
+                        <option value="Accessories">Accessories</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="sizeFilter">Size</label>
+                    <select id="sizeFilter">
+                        <option value="all">All Sizes</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="conditionFilter">Condition</label>
+                    <select id="conditionFilter">
+                        <option value="all">All Conditions</option>
+                        <option value="Like New">Like New</option>
+                        <option value="Excellent">Excellent</option>
+                        <option value="Gently Used">Gently Used</option>
+                        <option value="Vintage">Vintage</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="sortSelect">Sort By</label>
+                    <select id="sortSelect">
+                        <option value="featured">Featured</option>
+                        <option value="price-asc">Price: Low &rarr; High</option>
+                        <option value="price-desc">Price: High &rarr; Low</option>
+                        <option value="newest">Newest</option>
+                        <option value="discount">Discount</option>
+                    </select>
+                </div>
+
+                <div class="filter-group price-range">
+                    <label for="priceSlider">Max Price: <span id="priceDisplay">$500</span></label>
+                    <input type="range" id="priceSlider" min="0" max="500" value="500" step="5" />
+                </div>
+
+                <div class="items-per-page">
+                    <label for="itemsPerPage">Items:</label>
+                    <select id="itemsPerPage">
+                        <option value="12">12</option>
+                        <option value="24" selected>24</option>
+                        <option value="48">48</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="product-grid" id="productGrid" aria-live="polite"></div>
+            <nav class="pagination" id="pagination" aria-label="Pagination"></nav>
+        </section>
+
+        <!-- ===== ABOUT VIEW ===== -->
+        <section id="view-about" class="view" aria-labelledby="aboutHeading">
+            <div class="about-hero">
+                <h1 id="aboutHeading">Our Sustainability Mission</h1>
+                <p>We believe fashion should be beautiful, ethical, and kind to our planet.</p>
+            </div>
+
+            <div class="eco-values">
+                <div class="eco-value-card">
+                    <span class="eco-icon" aria-hidden="true"><i class="fas fa-seedling"></i></span>
+                    <h3>Zero Waste</h3>
+                    <p>Every garment is rescued, repaired, and re-loved.</p>
+                </div>
+                <div class="eco-value-card">
+                    <span class="eco-icon" aria-hidden="true"><i class="fas fa-handshake"></i></span>
+                    <h3>Fair Trade</h3>
+                    <p>We support local artisans and ethical sourcing.</p>
+                </div>
+                <div class="eco-value-card">
+                    <span class="eco-icon" aria-hidden="true"><i class="fas fa-globe-americas"></i></span>
+                    <h3>Carbon Neutral</h3>
+                    <p>Shipping is 100% carbon offset.</p>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2>Contact Our 24/7 Support</h2>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope" aria-hidden="true"></i> <strong>Email:</strong>
+                        support@thriftfashion.store</p>
+                    <p><i class="fas fa-phone-alt" aria-hidden="true"></i> <strong>Phone:</strong> +92 (352) 555-5555
+                    </p>
+                    <p><i class="fas fa-location-dot" aria-hidden="true"></i> <strong>Address:</strong> 123
+                        Sharah-E-Faisal, Pakistan</p>
+                </div>
+
+                <form id="feedbackForm" class="feedback-form" novalidate>
+                    <h3>We'd Love Your Feedback</h3>
+                    <div class="form-row">
+                        <input type="text" id="feedbackName" placeholder="Your Name" required aria-required="true" />
+                        <input type="email" id="feedbackEmail" placeholder="Your Email" required aria-required="true" />
+                    </div>
+                    <textarea id="feedbackMessage" placeholder="Your message..." rows="4" required
+                        aria-required="true"></textarea>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Feedback
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#shop">Shop</a></li>
+                        <li><a href="#about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="#about">Contact</a></li>
+                        <li><a href="#">Shipping Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="X (Twitter)"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Thrift Fashion Store. All rights reserved SFC-ARSH.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== LIVE TICKER ===== -->
+    <div class="live-ticker" id="liveTicker" aria-label="Live ticker with clock and location">
+        <div class="ticker-content">
+            <span class="ticker-clock" id="tickerClock">--</span>
+            <span class="ticker-separator" aria-hidden="true">|</span>
+            <span class="ticker-date" id="tickerDate">--</span>
+            <span class="ticker-separator" aria-hidden="true">|</span>
+            <span class="ticker-location" id="tickerLocation"><i class="fas fa-map-pin" aria-hidden="true"></i> Karachi, Division</span>
+        </div>
+    </div>
+
+    <!-- ===== PRODUCT MODAL ===== -->
+    <div class="modal-overlay" id="productModal" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+        <div class="modal-content product-details-modal">
+            <button class="modal-close" id="closeProductModal" aria-label="Close product details">&times;</button>
+            <div class="product-details-content" id="productDetailsContent"></div>
+        </div>
+    </div>
+
+    <!-- ===== INVOICE MODAL ===== -->
+    <div class="modal-overlay" id="invoiceModal" role="dialog" aria-modal="true" aria-labelledby="invoiceTitle">
+        <div class="modal-content invoice-modal">
+            <button class="modal-close" id="closeInvoiceModal" aria-label="Close invoice">&times;</button>
+            <div id="invoiceContent"></div>
+            <button class="btn btn-primary" id="printInvoiceBtn" type="button"><i class="fas fa-print"
+                    aria-hidden="true"></i> Print Invoice</button>
+        </div>
+    </div>
+
+    <!-- ===== CART DRAWER ===== -->
+    <div class="cart-drawer" id="cartDrawer" aria-hidden="true">
+        <div class="cart-drawer-overlay" id="cartOverlay"></div>
+        <div class="cart-drawer-content">
+            <div class="cart-header">
+                <h2><i class="fas fa-shopping-bag" aria-hidden="true"></i> Your Cart</h2>
+                <button class="modal-close" id="closeCartDrawer" aria-label="Close cart">&times;</button>
+            </div>
+            <div class="cart-items" id="cartItems"></div>
+            <div class="cart-summary" id="cartSummary"></div>
+            <button class="btn btn-primary" id="generateInvoiceBtn" type="button">
+                <i class="fas fa-file-invoice" aria-hidden="true"></i> Generate Invoice
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== TOAST CONTAINER ===== -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+</body>
+
+</html>
