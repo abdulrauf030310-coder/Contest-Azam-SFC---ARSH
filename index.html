@@ -5,21 +5,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thrift Fashion · Curated Pre‑loved</title>
-    <meta name="description"
-        content="Curated pre‑loved fashion, sustainably sourced. Discover 500+ unique vintage & thrifted pieces." />
+    <meta name="description" content="Curated pre‑loved fashion, sustainably sourced. Discover 500+ unique vintage & thrifted pieces." />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- ===== MAIN JAVASCRIPT ===== -->
+    <script defer src="script.js"></script>
 
     <!-- External libraries -->
     <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js" defer></script>
@@ -28,14 +31,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 
-    <!-- Main Styles -->
-    <link rel="stylesheet" href="css/style.css" />
-
-    <!-- ===== MAIN JAVASCRIPT ===== -->
-    <script defer src="js/app.js"></script>
-
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/logo.png" />
+</head>
 
 <body>
 
@@ -43,22 +40,18 @@
     <div id="loadingScreen" role="status" aria-label="Loading">
         <div class="loader-hanger" aria-hidden="true">
             <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20 30 L20 55 L60 55 L60 30" stroke="#800020" stroke-width="2.5" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                <path d="M30 30 L30 45 M50 30 L50 45 M40 30 L40 50" stroke="#6B0D23" stroke-width="2"
-                    stroke-linecap="round" />
+                <path d="M20 30 L20 55 L60 55 L60 30" stroke="#800020" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M30 30 L30 45 M50 30 L50 45 M40 30 L40 50" stroke="#6B0D23" stroke-width="2" stroke-linecap="round" />
                 <path d="M40 10 L40 30" stroke="#800020" stroke-width="2.5" stroke-linecap="round" />
                 <circle cx="40" cy="10" r="4" fill="#800020" opacity="0.6">
                     <animate attributeName="opacity" values="0.6;1;0.6" dur="1.2s" repeatCount="indefinite" />
                     <animate attributeName="r" values="4;5;4" dur="1.2s" repeatCount="indefinite" />
                 </circle>
                 <circle cx="30" cy="20" r="2" fill="#6B0D23" opacity="0.3">
-                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.8s" repeatCount="indefinite"
-                        begin="0.3s" />
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.8s" repeatCount="indefinite" begin="0.3s" />
                 </circle>
                 <circle cx="50" cy="20" r="2" fill="#6B0D23" opacity="0.3">
-                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.8s" repeatCount="indefinite"
-                        begin="0.9s" />
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="1.8s" repeatCount="indefinite" begin="0.9s" />
                 </circle>
             </svg>
         </div>
@@ -73,8 +66,7 @@
         <div class="modal-content">
             <h2 id="firstVisitTitle">Welcome to Thrift Fashion</h2>
             <p>Enter your name to begin your journey.</p>
-            <input type="text" id="firstNameInput" placeholder="Your first name" maxlength="30"
-                aria-label="Your first name" />
+            <input type="text" id="firstNameInput" placeholder="Your first name" maxlength="30" aria-label="Your first name" />
             <button class="btn btn-primary" id="saveNameBtn" type="button">Enter Store</button>
         </div>
     </div>
@@ -131,16 +123,14 @@
                 <div class="hero-overlay">
                     <div class="hero-brand-tag">Circular Fashion</div>
                     <h1 class="hero-title-sutra" id="homeHeading">TIMELESS CRAFT,<br /><em>MODERN SOUL.</em></h1>
-                    <p class="hero-sub-sutra">Discover our new collection of heritage-inspired clothing, redefined for
-                        today.</p>
+                    <p class="hero-sub-sutra">Discover our new collection of heritage-inspired clothing, redefined for today.</p>
                     <a href="#shop" class="hero-cta-sutra">
                         <span>Explore Collection</span>
                         <span class="arrow" aria-hidden="true">&rarr;</span>
                     </a>
                 </div>
 
-                <div class="hero-categories" id="heroCategories" role="tablist"
-                    aria-label="Filter hero slides by category">
+                <div class="hero-categories" id="heroCategories" role="tablist" aria-label="Filter hero slides by category">
                     <button role="tab" aria-selected="true" data-category="all" class="active">All</button>
                     <button role="tab" aria-selected="false" data-category="Tops">Tops</button>
                     <button role="tab" aria-selected="false" data-category="Outerwear">Outerwear</button>
@@ -153,8 +143,7 @@
 
             <!-- PERSONALIZED BANNER -->
             <div class="personalized-banner" id="personalizedBanner">
-                <p><i class="fas fa-leaf" aria-hidden="true"></i><span id="bannerGreeting">Welcome</span> &ndash; your
-                    first stop for timeless thrifted treasures.</p>
+                <p><i class="fas fa-leaf" aria-hidden="true"></i><span id="bannerGreeting">Welcome</span> &ndash; your first stop for timeless thrifted treasures.</p>
             </div>
 
             <!-- FEATURED -->
@@ -196,14 +185,12 @@
         <section id="view-shop" class="view" aria-labelledby="shopHeading">
             <div class="shop-header">
                 <h1 id="shopHeading">Shop All Treasures</h1>
-                <p>Browse our entire collection of <span id="totalProductsCount">500+</span> unique, pre-loved pieces.
-                </p>
+                <p>Browse our entire collection of <span id="totalProductsCount">500+</span> unique, pre-loved pieces.</p>
             </div>
 
             <div class="shop-controls">
                 <div class="search-wrapper">
-                    <input type="search" id="searchInput" placeholder="Search by style, era, garment..."
-                        aria-label="Search products" />
+                    <input type="search" id="searchInput" placeholder="Search by style, era, garment..." aria-label="Search products" />
                     <span class="search-icon" aria-hidden="true"><i class="fas fa-search"></i></span>
                 </div>
 
@@ -301,12 +288,9 @@
             <div class="contact-section">
                 <h2>Contact Our 24/7 Support</h2>
                 <div class="contact-info">
-                    <p><i class="fas fa-envelope" aria-hidden="true"></i> <strong>Email:</strong>
-                        support@thriftfashion.store</p>
-                    <p><i class="fas fa-phone-alt" aria-hidden="true"></i> <strong>Phone:</strong> +92 (352) 555-5555
-                    </p>
-                    <p><i class="fas fa-location-dot" aria-hidden="true"></i> <strong>Address:</strong> 123
-                        Sharah-E-Faisal, Pakistan</p>
+                    <p><i class="fas fa-envelope" aria-hidden="true"></i> <strong>Email:</strong> support@thriftfashion.store</p>
+                    <p><i class="fas fa-phone-alt" aria-hidden="true"></i> <strong>Phone:</strong> +92 (352) 555-5555</p>
+                    <p><i class="fas fa-location-dot" aria-hidden="true"></i> <strong>Address:</strong> 123 Sharah-E-Faisal, Pakistan</p>
                 </div>
 
                 <form id="feedbackForm" class="feedback-form" novalidate>
@@ -315,8 +299,7 @@
                         <input type="text" id="feedbackName" placeholder="Your Name" required aria-required="true" />
                         <input type="email" id="feedbackEmail" placeholder="Your Email" required aria-required="true" />
                     </div>
-                    <textarea id="feedbackMessage" placeholder="Your message..." rows="4" required
-                        aria-required="true"></textarea>
+                    <textarea id="feedbackMessage" placeholder="Your message..." rows="4" required aria-required="true"></textarea>
                     <button type="submit" class="btn btn-primary">
                         <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Feedback
                     </button>
@@ -385,8 +368,7 @@
         <div class="modal-content invoice-modal">
             <button class="modal-close" id="closeInvoiceModal" aria-label="Close invoice">&times;</button>
             <div id="invoiceContent"></div>
-            <button class="btn btn-primary" id="printInvoiceBtn" type="button"><i class="fas fa-print"
-                    aria-hidden="true"></i> Print Invoice</button>
+            <button class="btn btn-primary" id="printInvoiceBtn" type="button"><i class="fas fa-print" aria-hidden="true"></i> Print Invoice</button>
         </div>
     </div>
 
